@@ -1,23 +1,31 @@
 import { getImgs } from "./pixabay-api";
 
+
 const refs = {
     gallery : document.querySelector(".js-gallery"),
 }
 
-getImgs().then(data => {
-    const markup = createMarkup(data);
+export function createGallery(imgs) {
+    const markup = createMarkup(imgs);
     refs.gallery.innerHTML = markup;
-});
+    refs.gallery.classList.add('gallery');
+}
+
+function resetGallery() { 
+    refs.gallery.innerHTML = '';
+}
 
 function ImgTemplate(img) { 
 const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = img;
     return `<li class="js-gallery-item">
-        <img src="${webformatURL}" alt="${tags}" width="360" height="200"/>
+        <a href="${largeImageURL}">
+        <img src="${webformatURL}" alt="${tags}" width="360" height="158"/>
+        </a>
         <ul class="stats">
-          <li class="stats-item">Likes<span>${likes}</span></li>
-          <li class="stats-item">Comments<span>${comments}</span></li>
-          <li class="stats-item">Views<span>${views}</span></li>
-          <li class="stats-item">Downloads<span>${downloads}</span></li>
+          <li class="stats-item">Likes<span class="stats-span">${likes}</span></li>
+          <li class="stats-item">Comments<span class="stats-span">${comments}</span></li>
+          <li class="stats-item">Views<span class="stats-span">${views}</span></li>
+          <li class="stats-item">Downloads<span class="stats-span">${downloads}</span></li>
         </ul>
       </li>`;
 }
@@ -25,3 +33,4 @@ const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = i
 function createMarkup(arr) { 
     return arr.map(ImgTemplate).join('');
 }
+

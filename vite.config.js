@@ -11,7 +11,7 @@ export default defineConfig(({ command }) => {
     },
     root: 'src',
     optimizeDeps: {
-      include: ['axios', 'izitoast'],
+      include: ['axios', 'izitoast', 'simplelightbox', 'css-loader'],
     },
     build: {
       sourcemap: true,
