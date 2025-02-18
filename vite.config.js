@@ -10,9 +10,9 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
-    optimizeDeps: {
+    /*optimizeDeps: {
       include: ['axios', 'izitoast', 'simplelightbox', 'css-loader'],
-    },
+    },*/
     build: {
       sourcemap: true,
       rollupOptions: {
