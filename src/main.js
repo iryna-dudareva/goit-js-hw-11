@@ -1,5 +1,5 @@
 import { getImgs } from './js/pixabay-api.js';
-import { createGallery } from './js/render-functions.js'
+import { createGallery, resetGallery } from './js/render-functions.js'
 
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
@@ -17,12 +17,17 @@ refs.searchForm.addEventListener("submit", handleSubmit);
 function handleSubmit(e) { 
     e.preventDefault();
 
+
     refs.loader.style.display = 'block';
+
     const request = e.target.elements['search-bar'].value;
+
+    resetGallery();
 
     getImgs(request).then(imgs => {
         createGallery(imgs);
         galleryModals.refresh();
+        refs.loader.style.display = 'none';
     });
 
     e.target.reset();

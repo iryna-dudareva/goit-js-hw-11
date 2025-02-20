@@ -6,16 +6,19 @@ const refs = {
 }
 
 export function createGallery(imgs) {
+    resetGallery();
     const markup = createMarkup(imgs);
     refs.gallery.innerHTML = markup;
     refs.gallery.classList.add('gallery');
 }
 
-function resetGallery() { 
-    refs.gallery.innerHTML = '';
+export function resetGallery() { 
+
+        refs.gallery.innerHTML = '';
+
 }
 
-function ImgTemplate(img) { 
+function imgTemplate(img) { 
 const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = img;
     return `<li class="js-gallery-item">
         <a href="${largeImageURL}">
@@ -31,6 +34,6 @@ const {webformatURL, largeImageURL, tags, likes, views, comments, downloads} = i
 }
 
 function createMarkup(arr) { 
-    return arr.map(ImgTemplate).join('');
+    return arr.map(imgTemplate).join('');
 }
 
